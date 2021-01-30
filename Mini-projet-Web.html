@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini-Projet</title>
+    <link href="bootstrap4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script>
+        var xhr=new XMLHttpRequest();
+        function charger(){
+            xhr.open("GET","  https://appessat707.000webhostapp.com/pfes.php",true);
+            xhr.send();
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4 && xhr.status==200){
+                    remplir(xhr.responseXML);
+                }
+            }
+        }
+
+        function charger_pfe(el){
+            xhr.open("GET","  https://appessat707.000webhostapp.com/pfes.php",true);
+            xhr.send();
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4 && xhr.status==200){
+                    remplir(xhr.responseXML);
+                }
+            }
+            resetElements();
+            console.log(el.innerHTML);
+            el.classList.add('active');
+        }
+        function charger_reseaux(el){
+            xhr.open("GET","https://appessat707.000webhostapp.com/pfespartypes.php?type=reseaux",true);
+            xhr.send();
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4 && xhr.status==200){
+                    remplir(xhr.responseXML);
+                }
+            }
+            resetElements();
+            console.log(el.innerHTML);
+            el.classList.add('active');
+        }
+        function charger_embarque(el){
+            xhr.open("GET","https://appessat707.000webhostapp.com/pfespartypes.php?type=Embarques et IoT",true);
+            xhr.send();
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4 && xhr.status==200){
+                    remplir(xhr.responseXML);
+                }
+            }
+            resetElements();
+            console.log(el.innerHTML);
+            el.classList.add('active');
+        }
+        function charger_telecom(el){
+            xhr.open("GET","https://appessat707.000webhostapp.com/pfespartypes.php?type=Telecom",true);
+            xhr.send();
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4 && xhr.status==200){
+                    remplir(xhr.responseXML);
+                }
+            }
+            resetElements();
+            console.log(el.innerHTML);
+            el.classList.add('active');
+        }
+        function charger_dev(el){
+            xhr.open("GET","https://appessat707.000webhostapp.com/pfespartypes.php?type=Developpement",true);
+            xhr.send();
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState==4 && xhr.status==200){
+                    remplir(xhr.responseXML);
+                }
+            }
+            resetElements();
+            console.log(el.innerHTML);
+            el.classList.add('active');
+        }
+        function resetElements() {
+            // Get all elements with "active" class
+            var els = document.getElementsByClassName("active");
+            // Loop over Elements to remove active class;
+            for (var i = 0; i < els.length; i++) {
+                els[i].classList.remove('active')
+            }
+        }
+        function remplir(n){
+            var tab=document.getElementById("tabbody");
+            var el=n.getElementsByTagName("pfe");
+            tab.innerHTML="";
+            for(var i=0;i<el.length;i++){
+                var tr=document.createElement("tr");
+                var td1=document.createElement("td");
+                var c1=document.createTextNode(el[i].getAttribute("id"));
+                td1.appendChild(c1);
+                tr.appendChild(td1);
+                var td2=document.createElement("td");
+                var c2=document.createTextNode(el[i].getAttribute("titre"));
+                td2.appendChild(c2);
+                tr.appendChild(td2);
+                var td3=document.createElement("td");
+                var c3=document.createTextNode(el[i].getAttribute("type"));
+                td3.appendChild(c3);
+                tr.appendChild(td3);
+                tab.appendChild(tr);
+            }
+        }
+    </script>
+</head>
+<body onload="charger()">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h1>Catalogue des PFEs (ESSAT)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-3">
+            <div class="list-group">
+                <li class="list-group-item list-group-item-action active" onclick="charger_pfe(this)"> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                    Tous les PFEs <span
+                        class="badge badge-pill badge-warning"> 13 </span></li>
+                <li class="list-group-item list-group-item-action" onclick="charger_telecom(this)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                    PFEs Telecom <span
+                        class="badge badge-pill badge-primary"> 3 </span></li>
+                <li class="list-group-item list-group-item-action" onclick="charger_dev(this)"> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                    PFEs Developpement<span
+                        class="badge badge-pill badge-primary"> 4 </span></li>
+                <li class="list-group-item list-group-item-action" onclick="charger_reseaux(this)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                    PFEs Reseaux<span
+                        class="badge badge-pill badge-primary"> 3 </span></li>
+                <li class="list-group-item list-group-item-action" onclick="charger_embarque(this)"> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                    PFEs Embarques et IoT<span
+                        class="badge badge-pill badge-primary"> 3 </span></li>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    Liste des PFEs
+                </div>
+            </div>
+            <table class="table table-hover table-border" id="tab">
+                <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Type</th>
+                </tr>
+                </thead>
+                <tbody id="tabbody">
+                </tbody>
+        </div>
+    </div>
+</div>
+</body>
+</html>
